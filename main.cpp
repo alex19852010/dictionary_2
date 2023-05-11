@@ -4,78 +4,58 @@
 
 using namespace std;
 
-map<string, int> registry;
-map<int, string> reg;
+map<string, int> surnamecount;
 string surname;
 int number = 1;
 string calling;
 string str;
 int count = 0;
+int n = 3;
 
 
 int main() {
     while (1) {
+
+
         cout << "add surname:";
         cin >> surname;
-        registry.insert(pair<string, int>(surname, number));
-        reg.insert(pair<int, string>(number, surname));
-        number++;
 
-        auto it = registry.find(surname);
-        auto its = reg.find(number);
+        auto it = surnamecount.find(surname);
+
+        if (it == surnamecount.end()) {
+            surnamecount.insert(pair<string, int>(surname, number));
+        } else {
+            auto m = surnamecount.find(surname);
+            surnamecount[surname]++;
+
+        }
 
         cout << "if you want to calling a person then click next:";
         cin >> calling;
+
         if (calling == "next") {
-            for (it = registry.begin(); it != registry.end(); it++) {
-                cout << it->first << endl;
-                str = it->first;
-                for (its = reg.begin(); its != reg.end(); its++) {
-                    if (str == its->second) {
-                        count++;
-                        if (str == its->second && count > 1) {
-                            cout << its->second << endl;
-                            count--;
-                        }
+            for (it = surnamecount.begin(); it != surnamecount.end(); it++) {
+                int a = it->second;
+                for (int i = 0; i < a; i++) {
 
-                    }
-
+                    cout << it->first << endl;
                 }
-                count = 0;
             }
-
-            while (!(registry.empty())) {
-
-                str = registry.begin()->first;
-                for (its = reg.begin(); its != reg.end(); its++) {
-                    if (str == its->second) {
-                        count++;
-
-
-                    }
-
-                }
-
-                for (int i = 0; i < count; i++) {
+            while (!(surnamecount.empty())) {
+                str = surnamecount.begin()->first;
+                int a = surnamecount.begin()->second;
+                for (int i = 0; i < a; i++) {
                     cout << "next" << endl;
-                    cout << registry.begin()->first << endl;
-
+                    cout << surnamecount.begin()->first << endl;
                 }
-                count = 0;
 
-
-                registry.erase(str);
-
+                surnamecount.erase(str);
 
             }
-
-
         }
 
 
     }
-
-
     return 0;
 
 }
