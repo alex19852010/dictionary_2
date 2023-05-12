@@ -24,6 +24,7 @@ int main() {
         } else {
             
             it->second ++;
+            
 
         }
 
@@ -47,6 +48,7 @@ int main() {
             
         }
         else{
+
             for(it = surnamecount.begin(); it != surnamecount.end(); it ++)
                 {
                 
@@ -54,7 +56,7 @@ int main() {
                     for(int i = 0; i < n; i ++)
                     {
                         cout << it->first << endl;
-                        
+
                     }
                 }
         }
