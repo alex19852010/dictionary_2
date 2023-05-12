@@ -11,7 +11,6 @@ string calling;
 string str;
 int count = 0;
 
-
 int main() {
     while (1) {
 
